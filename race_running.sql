@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 02, 2020 at 01:15 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 07, 2020 lúc 04:59 PM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `race_running`
+-- Cơ sở dữ liệu: `race_running`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Cấu trúc bảng cho bảng `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +35,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Đang đổ dữ liệu cho bảng `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `name`, `user_name`, `password`) VALUES
@@ -46,7 +45,7 @@ INSERT INTO `admin` (`admin_id`, `name`, `user_name`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedback`
+-- Cấu trúc bảng cho bảng `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -57,7 +56,7 @@ CREATE TABLE `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `feedback`
+-- Đang đổ dữ liệu cho bảng `feedback`
 --
 
 INSERT INTO `feedback` (`feedback_id`, `content`, `email`, `name`) VALUES
@@ -76,7 +75,7 @@ INSERT INTO `feedback` (`feedback_id`, `content`, `email`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- Cấu trúc bảng cho bảng `member`
 --
 
 CREATE TABLE `member` (
@@ -90,7 +89,7 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `member`
+-- Đang đổ dữ liệu cho bảng `member`
 --
 
 INSERT INTO `member` (`member_id`, `username`, `password`, `name`, `age`, `gender`, `email`) VALUES
@@ -101,33 +100,34 @@ INSERT INTO `member` (`member_id`, `username`, `password`, `name`, `age`, `gende
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member_race`
+-- Cấu trúc bảng cho bảng `member_race`
 --
 
 CREATE TABLE `member_race` (
   `member_race_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `race_id` int(11) NOT NULL,
-  `run_time` varchar(50) DEFAULT NULL,
+  `run_time` time(6) DEFAULT NULL,
   `rank` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `member_race`
+-- Đang đổ dữ liệu cho bảng `member_race`
 --
 
 INSERT INTO `member_race` (`member_race_id`, `member_id`, `race_id`, `run_time`, `rank`) VALUES
-(1, 1, 1, '1 tiếng 30p', 1),
-(2, 2, 2, '2 tiếng', 1),
-(3, 1, 1, '0', 2),
-(4, 1, 1, '0', 2),
-(5, 1, 1, '0', 2),
-(6, 1, 1, '0', 2);
+(1, 1, 1, '00:00:01.000000', 1),
+(2, 2, 2, '00:00:02.000000', 1),
+(3, 1, 1, '00:00:00.000000', 2),
+(4, 1, 1, '00:00:00.000000', 2),
+(5, 1, 1, '00:00:00.000000', 2),
+(6, 1, 1, '00:00:00.000000', 2),
+(7, 1, 6, '00:00:00.000000', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `race`
+-- Cấu trúc bảng cho bảng `race`
 --
 
 CREATE TABLE `race` (
@@ -140,19 +140,23 @@ CREATE TABLE `race` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `race`
+-- Đang đổ dữ liệu cho bảng `race`
 --
 
 INSERT INTO `race` (`race_id`, `name`, `time`, `prize`, `track_id`, `winner`) VALUES
-(1, 'Cuộc thi 1', '2020-05-25 14:01:48', '1 triệu', 1, NULL),
-(2, 'Cuộc thi 2', '2020-05-27 14:01:48', '2 triệu', 2, NULL),
-(3, 'Cuộc thi 3', '2020-05-30 13:15:50', '1 triệu', 2, NULL),
-(4, 'Cuộc đua 4', '2020-05-29 13:15:50', '2 triệu', 1, NULL);
+(1, 'Cuộc thi 1', '2020-05-25 14:01:48', '1 triệu', 1, 'Phạm Văn Hậu'),
+(2, 'Cuộc thi 2', '2020-05-27 14:01:48', '2 triệu', 2, 'Nguyễn Văn A'),
+(3, 'Cuộc thi 3', '2020-05-30 13:15:50', '1 triệu', 2, 'Nguyễn Văn B'),
+(4, 'Cuộc đua 4', '2020-05-29 13:15:50', '2 triệu', 1, 'Phạm Văn C'),
+(5, 'Cuộc thi 5', '2020-06-17 20:43:00', '2 triệu', 2, NULL),
+(6, 'Cuộc thi 6', '2020-06-26 22:15:00', '2 triệu', 2, NULL),
+(8, 'Cuoc thi 7', '2020-06-15 08:10:00', '1 trieu', 1, NULL),
+(9, 'Cuoc thi 8', '2020-06-28 20:46:00', '1 trieu', 1, 'Hậu');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `track`
+-- Cấu trúc bảng cho bảng `track`
 --
 
 CREATE TABLE `track` (
@@ -163,37 +167,37 @@ CREATE TABLE `track` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `track`
+-- Đang đổ dữ liệu cho bảng `track`
 --
 
 INSERT INTO `track` (`track_id`, `name`, `location`, `long`) VALUES
-(1, 'đường đua A', 'Hà Nội', 10000),
+(1, 'đường đua A', 'Hà Nội', 15000),
 (2, 'đường đua B', 'Hồ Chí Minh', 15000);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `admin`
+-- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `feedback`
+-- Chỉ mục cho bảng `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`feedback_id`);
 
 --
--- Indexes for table `member`
+-- Chỉ mục cho bảng `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`member_id`);
 
 --
--- Indexes for table `member_race`
+-- Chỉ mục cho bảng `member_race`
 --
 ALTER TABLE `member_race`
   ADD PRIMARY KEY (`member_race_id`),
@@ -201,71 +205,71 @@ ALTER TABLE `member_race`
   ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `race`
+-- Chỉ mục cho bảng `race`
 --
 ALTER TABLE `race`
   ADD PRIMARY KEY (`race_id`),
   ADD KEY `track_id` (`track_id`);
 
 --
--- Indexes for table `track`
+-- Chỉ mục cho bảng `track`
 --
 ALTER TABLE `track`
   ADD PRIMARY KEY (`track_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `feedback`
+-- AUTO_INCREMENT cho bảng `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `member`
+-- AUTO_INCREMENT cho bảng `member`
 --
 ALTER TABLE `member`
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `member_race`
+-- AUTO_INCREMENT cho bảng `member_race`
 --
 ALTER TABLE `member_race`
-  MODIFY `member_race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `member_race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `race`
+-- AUTO_INCREMENT cho bảng `race`
 --
 ALTER TABLE `race`
-  MODIFY `race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `track`
+-- AUTO_INCREMENT cho bảng `track`
 --
 ALTER TABLE `track`
-  MODIFY `track_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `track_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `member_race`
+-- Các ràng buộc cho bảng `member_race`
 --
 ALTER TABLE `member_race`
   ADD CONSTRAINT `member_race_ibfk_1` FOREIGN KEY (`race_id`) REFERENCES `race` (`race_id`),
   ADD CONSTRAINT `member_race_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
 
 --
--- Constraints for table `race`
+-- Các ràng buộc cho bảng `race`
 --
 ALTER TABLE `race`
   ADD CONSTRAINT `race_ibfk_1` FOREIGN KEY (`track_id`) REFERENCES `track` (`track_id`);
