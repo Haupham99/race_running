@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontEndController@getHome');
 
-Route::get('/about', 'FrontEndController@getAbout');
+Route::get('/detail/{id}', 'FrontEndController@getDetail');
 
 Route::get('/contact', 'FrontEndController@getContact');
 
-Route::get('/member', 'FrontEndController@getMember');
+Route::get('/achievements', 'FrontEndController@getAchievements');
 
 Route::get('/race', 'FrontEndController@getRace');
 
@@ -55,12 +55,19 @@ Route::get('/logout', 'FrontEndController@getLogout');
 //     return view('race');
 // });
 //Admin
-Route::get('/admin', 'BackEndController@getHome');
 
 Route::get('/admin/add-race', 'BackEndController@addRace');
+Route::post('/admin/add-race', 'BackEndController@postAddRace');
+Route::get('/admin/edit-race/{id}', 'BackEndController@editRace');
+Route::post('/admin/edit-race/{id}', 'BackEndController@postEditRace');
 Route::get('/admin/get-race', 'BackEndController@getRace');
+Route::get('/admin/delete-race/{id}', 'BackEndController@deleteRace');
 
 Route::get('/admin/add-track', 'BackEndController@addTrack');
+Route::post('/admin/add-track', 'BackEndController@postAddTrack');
+Route::get('/admin/edit-track/{id}', 'BackEndController@editTrack');
+Route::post('/admin/edit-track/{id}', 'BackEndController@postEditTrack');
 Route::get('/admin/get-track', 'BackEndController@getTrack');
+Route::get('/admin/delete-track/{id}', 'BackEndController@deleteTrack');
 Route::get('/admin/get-member', 'BackEndController@getMember');
 Route::get('/admin/get-feedback', 'BackEndController@getFeedBack');

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <base href="{{ asset("")."backend/" }}">
+    <base href="{{ asset('backend/assets') }}">
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -97,24 +97,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo url('admin') ?>">Home</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                    </ul>
+                    <a class="navbar-brand" href="<?php echo url('admin/get-race') ?>">@yield('back-crumb')</a>
                 </div>
             </div>
         </nav>
@@ -134,7 +117,7 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="<?php echo url('admin') ?>">
+                            <a href="<?php echo url('admin/get-race') ?>">
                                 Home
                             </a>
                         </li>

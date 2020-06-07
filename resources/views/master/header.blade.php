@@ -29,25 +29,24 @@
          </div>
       </div>
       <div class="grid_12">
-         <div class="socials">
+         <!-- <div class="socials">
             <a href="#" class="fa fa-twitter"></a>
             <a href="#" class="fa fa-facebook"></a>
             <a href="#" class="fa fa-google-plus"></a>
             <a href="#" class="fa fa-instagram"></a>
-         </div>
+         </div> -->
          <h1>
-            <a href="index.html">
+            <a href="">
             <img src="images/logo.png" alt="Your Happy Family">
             </a>
          </h1>
          <div class="menu_block">
             <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                <ul class="sf-menu">
-                  <li class="current"><a href="/">Home</a></li>
-                  <li><a href="about">About Club</a></li>
-                  <li><a href="race">Race Calendar</a></li>
-                  <li><a href="member">Membership</a></li>
-                  <li><a href="contact">Contacts</a></li>
+                  <li class="home"><a href="/">Trang chủ</a></li>
+                  <li class="list"><a href="race" >Danh sách cuộc thi</a></li>
+                  <li class="achievements"><a href="achievements" >Thành tích</a></li>
+                  <li class="contact"><a href="contact" >Contacts</a></li>
                </ul>
             </nav>
             <div class="clear"></div>

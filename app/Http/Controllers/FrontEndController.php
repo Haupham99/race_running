@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Cookie;
+use \Datetime;
 
 class FrontEndController extends BaseController
 {
@@ -78,11 +79,18 @@ class FrontEndController extends BaseController
         return redirect('/contact');
     }
     function getHome(){
-        return view('home');
+        $time = new DateTime();
+        $now = $time->format('Y-m-d H:i:s');
+        $nextRaceTime1 = DB::table("race")->orderBy('time', "DESC")->first();
+        $nextRaceTime = $nextRaceTime1->time;
+        $incompletedRace = DB::table("race")->whereDate('time', '>', $now)->take(2)->get();
+        return view('home', ['nextRaceTime' => $nextRaceTime, 'incompletedRace' => $incompletedRace]);
     }
 
-    function getAbout(){
-        return view('about');
+    function getDetail($id){
+        $race = DB::table("race")->where("race_id", $id)->first();
+        // var_dump($race);
+        return view("detail", ["race" => $race]);
     }
 
     function getContact(){
@@ -90,12 +98,18 @@ class FrontEndController extends BaseController
     }
 
     function getRace(){
-        $results = DB::select('select * from race');
-        return view('race' , ['results' => $results]);
+        $time = new DateTime();
+        $now = $time->format('Y-m-d H:i:s');
+        $completedRace = DB::table("race")->whereDate('time', '<', $now)->get();
+        $incompletedRace = DB::table("race")->whereDate('time', '>', $now)->get();
+        return view('race' , ['completedRace' => $completedRace, 'incompletedRace' => $incompletedRace]);
     }
 
-    function getMember(){
-        return view('member');
+    function getAchievements(){
+        $time = new DateTime();
+        $now = $time->format('Y-m-d H:i:s');
+        $completedRace = DB::table("race")->whereDate('time', '<', $now)->get();
+        return view('achievements', ['completedRace' => $completedRace]);
     }
 
     function getJoin(){
