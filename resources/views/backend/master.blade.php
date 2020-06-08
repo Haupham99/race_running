@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet"/>

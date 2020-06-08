@@ -29,4 +29,5 @@
         @endforeach
     </tbody>
     </table>
+    {{ $tracks->links() }}
 @endsection

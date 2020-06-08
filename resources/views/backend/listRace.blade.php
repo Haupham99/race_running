@@ -32,4 +32,5 @@
         @endforeach
     </tbody>
     </table>
+    {{ $races->links() }}
 @endsection

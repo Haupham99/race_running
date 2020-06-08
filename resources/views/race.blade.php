@@ -36,7 +36,9 @@
 			</div> 
 			</div>
 			@endforeach
-
+			<div>
+			{{ $incompletedRace->links() }}
+			</div>
 			<h3 style="margin-left: 200px; color : red">Các cuộc thi đã diễn ra</h3>
 			@foreach($completedRace as $result)
 			<div style="margin-top: 20px" class="container">
@@ -68,5 +70,8 @@
 			</div> 
 			</div>
 			@endforeach
+			<div>
+			{{ $completedRace->links() }}
+			</div>
 		</div>
 		@endsection

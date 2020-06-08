@@ -37,8 +37,12 @@
                <input type="text" class="form-control" placeholder="Enter your address" id="add" name="address">
             </div>
             <div class="form-group">
-               <label for="id">Mã cuộc thi bạn muốn tham gia:</label>
-               <input type="int" class="form-control" placeholder="id" id="id" name="race_id">
+               <label for="race_id">Cuộc thi bạn muốn tham gia:</label>
+               <select id="race_id" name="race_id">
+               @foreach($races as $race)
+               <option value="{{ $race->race_id }}">{{ $race->name }}</option>
+               @endforeach
+               </select>
             </div>
             <button type="submit" class="btn btn-primary">Đăng ký</button>
          </form>

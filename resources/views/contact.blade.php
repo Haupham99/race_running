@@ -19,16 +19,14 @@
                </div>
                <div class="clear"></div>
                <div class="grid_5">
-                  <h3>Contact Info</h3>
-                  <div class="text1">Lorem ipsum dolor sit amet, consecteturpiscinger elit um dolor sit amet, consecteturpiscing.</div>
-                  <p>All <span class="color1"><a href="http://www.templatemonster.com/website-templates.php" rel="nofollow">premium templates</a></span> go with 24/7 technical support. Free themes lack this privilege.</p>
-                  <p>If you need help in customization of the chosen freebie, connect <span class="color1"><a href="http://www.templatetuning.com/" rel="nofollow">Template Tuning</a></span>.</p>
-                  The Company Name Inc. <br>
-                  9870 St Vincent Place, <br>
-                  Glasgow, DC 45 Fr 45. <br>
-                  Telephone: +1 800 603 6035 <br>
+                  <h3>Địa chỉ</h3>
+                  <div class="text1">Viện Công nghệ thông tin và truyền thông - Đại học Bách Khoa Hà Nội</div>
+                  <p>Muốn biết thêm thông tin chi tiết vui lòng liên hệ theo các địa chỉ sau<span class="color1"></span>:</p>
+
+                  Số 1 Đại Cồ Việt, <br>
+                  Telephone: 0827534715 <br>
                   FAX: +1 800 889 9898 <br>
-                  E-mail: <span class="color1"><a href="#">mail@demolink.org</a></span>
+                  E-mail: <span class="color1"><a href="#">haupham99a@gmail.com</a></span>
                </div>
                <div class="grid_6 prefix_1">
                   <h3>Contact Form</h3>

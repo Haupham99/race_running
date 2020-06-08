@@ -32,9 +32,13 @@ class FrontEndController extends BaseController
         $username = $request->get('username');
         $password = $request->get('password');
         $count = DB::table('member')->where('username', $username)->where('password', $password)->count();
+        $member_id = DB::table('member')->where('username', $username)->where('password', $password)->pluck('member_id');
         if($count == 1){
             Session::flash('loginSuccess', $username);
             Cookie::queue('loginSuccess', $username, '3600');
+            // var_dump($member);
+            Cookie::queue('member_id', $member_id, '3600');
+            // echo Cookie::get('member_id');
             return redirect('');
         }else{
             Session::flash('error', 'Tên tài khoản hoặc mật khẩu không chính xác');
@@ -81,7 +85,7 @@ class FrontEndController extends BaseController
     function getHome(){
         $time = new DateTime();
         $now = $time->format('Y-m-d H:i:s');
-        $nextRaceTime1 = DB::table("race")->orderBy('time', "DESC")->first();
+        $nextRaceTime1 = DB::table("race")->whereDate('time', '>', $now)->orderBy('time', 'ASC')->first();
         $nextRaceTime = $nextRaceTime1->time;
         $incompletedRace = DB::table("race")->whereDate('time', '>', $now)->take(2)->get();
         return view('home', ['nextRaceTime' => $nextRaceTime, 'incompletedRace' => $incompletedRace]);
@@ -100,20 +104,25 @@ class FrontEndController extends BaseController
     function getRace(){
         $time = new DateTime();
         $now = $time->format('Y-m-d H:i:s');
-        $completedRace = DB::table("race")->whereDate('time', '<', $now)->get();
-        $incompletedRace = DB::table("race")->whereDate('time', '>', $now)->get();
+        $completedRace = DB::table("race")->whereDate('time', '<', $now)->orderBy('time', 'ASC')->paginate(5);
+        $incompletedRace = DB::table("race")->whereDate('time', '>', $now)->orderBy('time', 'ASC')->paginate(5);
         return view('race' , ['completedRace' => $completedRace, 'incompletedRace' => $incompletedRace]);
     }
 
     function getAchievements(){
         $time = new DateTime();
         $now = $time->format('Y-m-d H:i:s');
-        $completedRace = DB::table("race")->whereDate('time', '<', $now)->get();
+        $completedRace = DB::table("race")->whereDate('time', '<', $now)->paginate(5);
         return view('achievements', ['completedRace' => $completedRace]);
     }
 
     function getJoin(){
-        return view('join');
+        $races = DB::table("race")->get();
+        if (Cookie::get('loginSuccess') != false){
+            return view('join', ["races" => $races]);
+        }else{
+            return redirect('/login');
+        }
     }
 
     function postJoin(Request $request){
@@ -121,8 +130,9 @@ class FrontEndController extends BaseController
         $phone = $request->get('phone');
         $address = $request->get('address');
         $race_id = $request->get('race_id');
+        $member_id = Cookie::get('member_id')[1];
         DB::table('member_race')->insert(
-            ['member_id' => 1, 'race_id' => $race_id, 'run_time' => '0', 'rank' => 2]
+            ['member_id' => $member_id, 'race_id' => $race_id, 'run_time' => null, 'rank' => null]
         );
         Session::flash('success', 'Đăng Ký thành công');
         return redirect('/race');

@@ -7,6 +7,7 @@
 				<li>Mã cuộc thi:{{ $race->race_id }}</li>
 				<li>Thời gian:{{ $race->time }}</li>
 				<li>Giải thưởng:{{ $race->prize }}</li>
+				<li>Người thắng cuộc:{{ $race->winner }}</li>
 			</ul>
 		</div>
 	</div>

@@ -71,3 +71,8 @@ Route::get('/admin/get-track', 'BackEndController@getTrack');
 Route::get('/admin/delete-track/{id}', 'BackEndController@deleteTrack');
 Route::get('/admin/get-member', 'BackEndController@getMember');
 Route::get('/admin/get-feedback', 'BackEndController@getFeedBack');
+
+
+Route::get('/admin/edit-member/{member_id}/{race_id}/{id}', 'BackEndController@editMember');
+Route::post('/admin/edit-member/{member_id}/{race_id}/{id}', 'BackEndController@postEditMember');
+Route::get('/admin/data', 'BackEndController@getData');

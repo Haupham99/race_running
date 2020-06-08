@@ -35,12 +35,12 @@ class BackEndController extends BaseController
     }
 
     function getRace(){
-        $races = DB::table("race")->orderBy("time", "DESC")->get();
+        $races = DB::table("race")->orderBy("time", "DESC")->paginate(5);
         return view('backend.listRace', ["races"=>$races]);
     }
 
     function getTrack(){
-        $tracks = DB::table("track")->get();
+        $tracks = DB::table("track")->paginate(5);
         return view('backend.listTrack', ["tracks"=>$tracks]);
     }
 
@@ -104,9 +104,37 @@ class BackEndController extends BaseController
     }
 
     function getMember(){
-        return view('backend.listMember');
+        $members = DB::table('member_race')
+            ->join('member', 'member_race.member_id', '=', 'member.member_id')
+            ->join('race', 'member_race.race_id', '=', 'race.race_id')->orderBy('time', "DESC")->get();
+        // var_dump($members[0]);
+        return view('backend.listMember', ["members" => $members]);
     }
     function getFeedBack(){
         return view('backend.listFeedBack');
+    }
+    function getData(){
+        $members = DB::table('member_race')
+            ->join('member', 'member_race.member_id', '=', 'member.member_id')
+            ->join('race', 'member_race.race_id', '=', 'race.race_id')->orderBy('time', "DESC")->get();
+        return $members;
+    }
+
+    function editMember($member_id, $race_id, $id){
+        $member = DB::table('member_race')
+            ->join('member', 'member_race.member_id', '=', 'member.member_id')
+            ->join('race', 'member_race.race_id', '=', 'race.race_id')->where('member.member_id', $member_id)
+            ->where('race.race_id', $race_id)->first();
+            return view('backend.editMember', ['member' => $member]);
+    }
+    function postEditMember(Request $request, $member_id, $race_id, $id){
+        $member_id = $member_id;
+        $race_id = $race_id;
+        $run_time = $request->get('run_time');
+        $rank = $request->get('rank');
+        DB::table('member_race')->where('member_race_id', $id)
+        ->update(['member_id' => $member_id, 'race_id' => $race_id, 'run_time' => $run_time, 'rank' => $rank]);
+        Session::flash('success', 'Cập nhật thành công');
+        return redirect('admin/get-member');
     }
 }
