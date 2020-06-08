@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 07, 2020 lúc 04:59 PM
+-- Thời gian đã tạo: Th6 08, 2020 lúc 02:52 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.2.31
 
@@ -116,13 +116,15 @@ CREATE TABLE `member_race` (
 --
 
 INSERT INTO `member_race` (`member_race_id`, `member_id`, `race_id`, `run_time`, `rank`) VALUES
-(1, 1, 1, '00:00:01.000000', 1),
-(2, 2, 2, '00:00:02.000000', 1),
-(3, 1, 1, '00:00:00.000000', 2),
-(4, 1, 1, '00:00:00.000000', 2),
-(5, 1, 1, '00:00:00.000000', 2),
-(6, 1, 1, '00:00:00.000000', 2),
-(7, 1, 6, '00:00:00.000000', 2);
+(1, 1, 1, '00:11:00.000000', 1),
+(2, 2, 2, '00:10:00.000000', 1),
+(7, 1, 6, '00:00:00.000000', 2),
+(8, 3, 9, '16:01:00.000000', 1),
+(9, 2, 1, '00:17:01.000000', NULL),
+(10, 3, 1, '00:08:26.000000', NULL),
+(11, 1, 6, NULL, NULL),
+(12, 2, 6, NULL, NULL),
+(13, 2, 10, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,8 @@ INSERT INTO `race` (`race_id`, `name`, `time`, `prize`, `track_id`, `winner`) VA
 (5, 'Cuộc thi 5', '2020-06-17 20:43:00', '2 triệu', 2, NULL),
 (6, 'Cuộc thi 6', '2020-06-26 22:15:00', '2 triệu', 2, NULL),
 (8, 'Cuoc thi 7', '2020-06-15 08:10:00', '1 trieu', 1, NULL),
-(9, 'Cuoc thi 8', '2020-06-28 20:46:00', '1 trieu', 1, 'Hậu');
+(9, 'Cuoc thi 8', '2020-06-28 20:46:00', '1 trieu', 1, 'Hậu'),
+(10, 'Cuộc thi 10', '2020-07-12 15:07:00', '2 trieu', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -243,13 +246,13 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT cho bảng `member_race`
 --
 ALTER TABLE `member_race`
-  MODIFY `member_race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `member_race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `race`
 --
 ALTER TABLE `race`
-  MODIFY `race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `race_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `track`
